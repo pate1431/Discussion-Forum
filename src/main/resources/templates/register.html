@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+ 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="../static/js/script.js" th:src="@{/js/script.js}" type="text/javascript"></script>
+<style>
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #eceffc;
+}
+
+.btn {
+  padding: 8px 20px;
+  border-radius: 0;
+  overflow: hidden;
+
+  &::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      var(--primary-color),
+      transparent
+    );
+    transform: translateX(-100%);
+    transition: 0.6s;
+  }
+
+  &:hover {
+    background: transparent;
+    box-shadow: 0 0 20px 10px hsla(204, 70%, 53%, 0.5);
+
+    &::before {
+      transform: translateX(100%);
+    }
+  }
+}
+
+.form-input-material {
+  --input-default-border-color: white;
+  --input-border-bottom-color: white;
+  
+  input {
+    color: white;
+  }
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+  padding: 50px 40px;
+  color: white;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 0.4px 0.4px rgba(128, 128, 128, 0.109),
+    0 1px 1px rgba(128, 128, 128, 0.155),
+    0 2.1px 2.1px rgba(128, 128, 128, 0.195),
+    0 4.4px 4.4px rgba(128, 128, 128, 0.241),
+    0 12px 12px rgba(128, 128, 128, 0.35);
+
+  h1 {
+    margin: 0 0 24px 0;
+  }
+
+  .form-input-material {
+    margin: 12px 0;
+  }
+
+  .btn {
+    width: 100%;
+    margin: 18px 0 9px 0;
+  }
+}
+</style>
+</head>
+<body>
+	<div id="register">
+			
+			<form class="login-form" name="form" onSubmit="return verify()" method="post" th:action="@{/register}">
+				<h1>Register</h1>
+				
+			<div style="color: orange" id="error">
+					
+				</div>
+				
+				
+				<div class="form-input-material">
+				
+				
+				<input class="form-control-material" type="text" id="username" name="username" placeholder=" " autocomplete="off">
+				<label for="username">Username</label>
+				</div>
+				
+				<div class="form-input-material">
+				<input class="form-control-material"  placeholder=" " autocomplete="off" id="password" type="password" name="password">
+				<label for="password">Password</label>
+				
+				</div>
+				
+				<div class="form-input-material">
+				<input class="form-control-material" placeholder=" " autocomplete="off" id="verify-password" type="password" name="verifypassword">
+				<label for="verify-password">Verify-Password</label>
+				</div>
+				
+				<button class="btn btn-primary btn-ghost" type="submit" name="register">Register</button>
+				<button class="btn btn-primary btn-ghost" ><a style="color: white" href="/login" th:href="@{/login}">Sign In</a></button>
+			</form>
+	</div>
+</body>
+</html>

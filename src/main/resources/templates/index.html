@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<style>
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #eceffc;
+}
+
+</style>
+<meta charset="ISO-8859-1">
+<title></title>
+ 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    
+</head>
+<body>
+	<div class="jumbotron bg-dark text-white text-center">
+	<h1>Welcome To Discussion Forum</h1>
+	<span>Powered by Snehal Patel</span>
+	<br>
+	<span>
+	<a class="btn btn-secondary" href="/secure" th:href="@{/secure}">Lets Go!!</a>
+	</span>
+	</div>
+</body>
+</html>

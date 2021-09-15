@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<style>
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #eceffc;
+}
+
+.btn {
+  padding: 8px 20px;
+  border-radius: 0;
+  overflow: hidden;
+
+  &::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      var(--primary-color),
+      transparent
+    );
+    transform: translateX(-100%);
+    transition: 0.6s;
+  }
+
+  &:hover {
+    background: transparent;
+    box-shadow: 0 0 20px 10px hsla(204, 70%, 53%, 0.5);
+
+    &::before {
+      transform: translateX(100%);
+    }
+  }
+}
+
+.form-input-material {
+  --input-default-border-color: white;
+  --input-border-bottom-color: white;
+  
+  input {
+    color: white;
+  }
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 40px;
+  color: white;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 0.4px 0.4px rgba(128, 128, 128, 0.109),
+    0 1px 1px rgba(128, 128, 128, 0.155),
+    0 2.1px 2.1px rgba(128, 128, 128, 0.195),
+    0 4.4px 4.4px rgba(128, 128, 128, 0.241),
+    0 12px 12px rgba(128, 128, 128, 0.35);
+
+  h1 {
+    margin: 0 0 24px 0;
+  }
+
+  .form-input-material {
+    margin: 12px 0;
+  }
+
+  .btn {
+    width: 100%;
+    margin: 18px 0 9px 0;
+  }
+}
+</style>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+ 	
+</head>
+<body>
+	
+		
+		<form method="post" th:action="@{/login}" class="login-form">
+			<h1>Login</h1>
+				<div th:if="${param.error}">
+                <div style="color:red;">
+				    Invalid username or password.
+                </div>
+            	</div><br>
+			
+            	<div th:if="${param.logout}">
+                <div style="color:red;">
+                    You have been logged out.
+                </div>
+                <br>
+            	</div>	
+				
+				<div class="form-input-material">
+				<input class="form-control-material" type="text" id="username" name="username" autocomplete="off">
+				<label for="username">Username:</label>
+				</div>
+				
+				<div class="form-input-material">
+				<input class="form-control-material" autocomplete="off" id="password" type="password" name="password">
+				<label for="password">Password:</label>
+				</div>
+				
+				<button type="submit" class="btn btn-primary btn-ghost">Login</button>
+				<button class="btn btn-primary btn-ghost" ><a style="color: white"href="/register" th:href="@{/register}">Create New Account</a></button>
+			</form>
+	
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+  text-decoration: none;
+}
+
+.active {
+  background-color: #5490f0;
+}
+.container{
+	left-margin: 0;
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  width: 25%;
+  padding: 0 10px;
+  float: left;
+  
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+    float: left;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+</style>
+<meta charset="ISO-8859-1">
+<title>Welcome</title>
+ 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="bg-dark text-white">
+		<h1 class="jumbotron bg-dark text-red text-center">Discussion Forum</h1>
+		<div class="container">
+			Hey there [[${name}]]
+		</div>
+	</div>
+	<ul>
+		<li><a class="active" href="/" th:href="@{/}">Home</a></li>
+        <li><a th:href="@{/createThread}">Create Thread</a></li>
+        <li><a th:href="@{/logout}">Logout</a></li>
+	</ul>
+	
+	
+	<div th:each="thread: ${threadsList}">
+        <div class="row">
+        	<div class="column">
+        	<div class="card">
+        	
+	        	<h3 th:text="${thread.topic}">Java</h3>
+	        	<p style="font-weight: bold" th:text="${thread.name}">Hello World</p>
+	        	<p th:text="${thread.message}">Hello World</p>
+	        	
+	        	<span th:text="${thread.threadDate}">asdada</span>
+	        	<span th:text="${thread.threadTime}">asdada</span>
+	        
+	        	<hr style="border: 1px solid #5490f0">
+	        	<div th:each="comment: ${thread.commentList}">
+	        		<h6>Comment:</h6>
+	        		<p th:text="${comment.comment}"></p>
+	        		
+	        		<h6>Name:</h6>
+	        		<p th:text="${comment.name}"></p>
+	        		
+	        		<span>	Date & Time</span>
+	        			<span th:text="${comment.cdate}"></span>
+	        			<span th:text="${comment.ctime}"></span>
+	        		
+	        	</div>
+	        	<hr style="border:1px dashed grey">
+	        	<a class="btn btn-secondary" th:href="@{'/comment/'+${thread.id}}">Add Comment</a>		  		
+	      	</div>
+	      	</div>
+      	</div>
+    </div>
+</body>
+</html>

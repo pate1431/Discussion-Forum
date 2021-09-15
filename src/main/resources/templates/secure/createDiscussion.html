@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>New Thread</title>
+ 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+  text-decoration: none;
+}
+
+.active {
+  background-color: #5490f0;
+}
+.container{
+	left-margin: 0;
+}
+</style>
+
+</head>
+<body>
+	<h1 class="jumbotron bg-dark text-white text-center">Create Thread</h1>
+		<div class="container">
+			[[${name}]]
+		</div>
+	<ul>
+		<li><a class="active" href="/" th:href="@{/}">Home</a></li>
+        <li><a th:href="@{/createThread}">Create Thread</a></li>
+        <li><a th:href="@{/logout}">Logout</a></li>
+	</ul>
+	
+	
+	<form name="form" method="get" th:action="@{/addThread}">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Topic</label>
+                    <input type="text" class="form-control" name="topic" placeholder="Enter the topic of thread!">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Message</label>
+                    <input type="text" class="form-control" name="message" placeholder="Enter the content of thread!">
+                </div>
+                <input type="submit" class="btn btn-primary" value="Add!">
+            </form>
+
+</body>
+</html>
